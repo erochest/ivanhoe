@@ -1,0 +1,24 @@
+Default: &defaults
+  user: ivanhoe
+  password: ivanhoe
+  host: localhost
+  port: 5432
+  database: ivanhoe
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: ivanhoe_test
+  <<: *defaults
+
+Staging:
+  database: ivanhoe_staging
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: ivanhoe_production
+  poolsize: 100
+  <<: *defaults
