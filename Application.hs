@@ -25,6 +25,12 @@ import System.Log.FastLogger (mkLogger)
 import Handler.Fay
 import Handler.Home
 
+import Data.HashMap.Strict as H
+import Data.Aeson.Types as AT
+#ifndef DEVELOPMENT
+import qualified Web.Heroku
+#endif
+
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
 -- comments there for more details.
@@ -57,9 +63,10 @@ makeFoundation :: AppConfig DefaultEnv Extra -> IO App
 makeFoundation conf = do
     manager <- newManager def
     s <- staticSite
+    hconfig <- loadHerokuConfig
     dbconf <- withYamlEnvironment "config/postgresql.yml" (appEnv conf)
-              Database.Persist.loadConfig >>=
-              Database.Persist.applyEnv
+                (Database.Persist.loadConfig . combineMappings hconfig) >>=
+                Database.Persist.applyEnv
     p <- Database.Persist.createPoolConfig (dbconf :: Settings.PersistConf)
     logger <- mkLogger True stdout
     let foundation = App conf s p manager dbconf onCommand logger
@@ -70,6 +77,27 @@ makeFoundation conf = do
         (messageLoggerSource foundation logger)
 
     return foundation
+
+#ifndef DEVELOPMENT
+canonicalizeKey :: (Text, val) -> (Text, val)
+canonicalizeKey ("dbname", val) = ("database", val)
+canonicalizeKey pair = pair
+
+toMapping :: [(Text, Text)] -> AT.Value
+toMapping xs = AT.Object $ M.fromList $ map (\(key, val) -> (key, AT.String val)) xs
+#endif
+
+combineMappings :: AT.Value -> AT.Value -> AT.Value
+combineMappings (AT.Object m1) (AT.Object m2) = AT.Object $ m1 `H.union` m2
+combineMappings _ _ = error "Data.Object is not a Mapping."
+
+loadHerokuConfig :: IO AT.Value
+loadHerokuConfig = do
+#ifdef DEVELOPMENT
+    return $ AT.Object H.empty
+#else
+    Web.Heroku.dbConnParams >>= return . toMapping . map canonicalizeKey
+#endif
 
 -- for yesod devel
 getApplicationDev :: IO (Int, Application)
