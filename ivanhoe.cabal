@@ -77,6 +77,7 @@ library
                  , fast-logger                   >= 0.3
                  , heroku
                  , unordered-containers
+                 , vault ==0.3.0.0
 
 executable         ivanhoe
     if flag(library-only)
