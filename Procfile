@@ -87,4 +87,4 @@
 
 
 # Heroku configuration that runs your app
-web: ./dist/build/ivanhoe/ivanhoe production -p $PORT
+web: ./ivanhoe production -p $PORT
