@@ -84,7 +84,7 @@ canonicalizeKey ("dbname", val) = ("database", val)
 canonicalizeKey pair = pair
 
 toMapping :: [(Text, Text)] -> AT.Value
-toMapping xs = AT.Object $ M.fromList $ map (\(key, val) -> (key, AT.String val)) xs
+toMapping xs = AT.Object $ H.fromList $ Import.map (\(key, val) -> (key, AT.String val)) xs
 #endif
 
 combineMappings :: AT.Value -> AT.Value -> AT.Value
@@ -96,7 +96,7 @@ loadHerokuConfig = do
 #ifdef DEVELOPMENT
     return $ AT.Object H.empty
 #else
-    Web.Heroku.dbConnParams >>= return . toMapping . map canonicalizeKey
+    Web.Heroku.dbConnParams >>= return . toMapping . Import.map canonicalizeKey
 #endif
 
 -- for yesod devel
