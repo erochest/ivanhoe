@@ -15,5 +15,5 @@ Staging:
   <<: *defaults
 
 Production:
-  #approot: "http://www.example.com"
+  approot: "http://shielded-everglades-5738.herokuapp.com"
   <<: *defaults
