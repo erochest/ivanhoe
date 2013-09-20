@@ -11,6 +11,6 @@ import FFI
 --import Language.Fay.FFI
 #endif
 
-data Command = GetFib Int (Returns Int)
-    deriving (Read, Typeable, Data)
+data Command = Echo Int (Returns Int)
+             deriving (Read, Typeable, Data)
 
