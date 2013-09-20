@@ -1,5 +1,15 @@
-<div class="navbar">
+<div class="navbar navbar-static-top">
   <div class="navbar-inner">
     <a class="brand" href=@{HomeR}>Ivanhoe
     <ul class="nav">
-      <li class="active"><a href=@{HomeR}>Home
+      <li class="active">
+        <a href=@{HomeR}>Home
+    <ul class="nav pull-right">
+      $maybe (Entity _ user) <- muser
+        <li>
+          <p class="navbar-text">Hi #{userIdent user}
+        <li>
+          <a href=@{AuthR LogoutR}>Logout
+      $nothing
+        <li>
+          <a href=@{AuthR LoginR}>Login
