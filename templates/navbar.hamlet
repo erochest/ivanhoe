@@ -1,0 +1,5 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href=@{HomeR}>Ivanhoe
+    <ul class="nav">
+      <li class="active"><a href=@{HomeR}>Home

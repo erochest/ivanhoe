@@ -25,11 +25,7 @@ $newline never
     <body>
         <div class="container">
             <header>
-              <div class="navbar">
-                <div class="navbar-inner">
-                  <a class="brand" href=@{HomeR}>Ivanhoe
-                  <ul class="nav">
-                    <li class="active"><a href=@{HomeR}>Home
+              ^{navbar}
             <div id="main" role="main">
               ^{pageBody pc}
             <footer>
