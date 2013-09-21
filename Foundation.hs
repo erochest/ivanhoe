@@ -86,10 +86,16 @@ instance Yesod App where
 
         muser <- maybeAuth
         let navbar = $(hamletFile "templates/navbar.hamlet")
+
         pc <- widgetToPageContent $ do
+            addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
             $(combineStylesheets 'StaticR
                 [ css_normalize_css
                 , css_bootstrap_css
+                ])
+            $(combineScripts 'StaticR
+                [ js_bootstrap_min_js
+                , js_main_js
                 ])
             $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
