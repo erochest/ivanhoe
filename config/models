@@ -10,6 +10,7 @@ Email
     UniqueEmail email
 
 Story
+    title Text
     content Text
     submitted UTCTime
     owner UserId

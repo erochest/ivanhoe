@@ -6,3 +6,4 @@
 /robots.txt RobotsR GET
 
 / HomeR GET
+/stories StoriesR GET

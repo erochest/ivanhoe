@@ -2,8 +2,10 @@
   <div class="navbar-inner">
     <a class="brand" href=@{HomeR}>Ivanhoe
     <ul class="nav">
-      <li class="active">
+      <li :Just HomeR == mcurr:.active>
         <a href=@{HomeR}>Home
+      <li :Just StoriesR == mcurr:.active>
+        <a href=@{StoriesR}>Stories
     <ul class="nav pull-right">
       $maybe (Entity _ user) <- muser
         <li>

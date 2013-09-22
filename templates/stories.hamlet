@@ -1,0 +1,7 @@
+$if null stories
+  <p>No stories
+$else
+  <ul>
+    $forall Entity _ story <- stories
+      <li>
+        ^{storySummary story}

@@ -1,10 +1,10 @@
+{-# LANGUAGE TemplateHaskell #-}
+
 
 module Ivanhoe.Types where
 
 
-import Data.Text (pack, unpack)
-import Database.Persist.Class
-import Database.Persist.Sql
+import Database.Persist.TH
 import Prelude
 
 
@@ -16,13 +16,5 @@ data Role = Owner
           | Editor
           | Commentor
           deriving (Enum, Show, Read, Eq)
-
-instance PersistField Role where
-    toPersistValue = PersistText . pack . show
-
-    fromPersistValue (PersistText v) = Right . read $ unpack v
-    fromPersistValue _               = Left "Invalid value for Role."
-
-instance PersistFieldSql Role where
-    sqlType _ = SqlString
+derivePersistField "Role"
 

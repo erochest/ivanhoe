@@ -85,6 +85,7 @@ instance Yesod App where
         -- you to use normal widget features in default-layout.
 
         muser <- maybeAuth
+        mcurr <- getCurrentRoute
         let navbar = $(hamletFile "templates/navbar.hamlet")
 
         pc <- widgetToPageContent $ do

@@ -23,6 +23,7 @@ library
                      SharedTypes
                      Handler.Fay
                      Handler.Home
+                     Handler.Stories
                      Ivanhoe.Types
 
     if flag(dev) || flag(library-only)

@@ -24,6 +24,7 @@ import System.Log.FastLogger (mkLogger)
 -- Don't forget to add new modules to your cabal file!
 import Handler.Fay
 import Handler.Home
+import Handler.Stories
 
 import Data.HashMap.Strict as H
 import Data.Aeson.Types as AT
