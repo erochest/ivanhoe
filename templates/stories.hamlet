@@ -1,3 +1,7 @@
+<div>
+  <a .btn.btn-primary.pull-right href=@{NewStoryR}>
+    <i .icon-plus-sign>
+    \ New Story
 $if null stories
   <p>No stories
 $else

@@ -1,0 +1,22 @@
+<dl>
+  <dt>
+    <strong>Title
+  <dd>
+    #{storyTitle story}
+  <dd>
+    #{storyContent story}
+  <dt>
+    <strong>Submitted
+  <dd>
+    #{submitted}
+  <dt>
+    <strong>Owner
+  <dd>
+    #{userIdent owner}
+  <dt>
+    <strong>Public
+  <dd>
+    $if storyPublic story
+      yes
+    $else
+      no

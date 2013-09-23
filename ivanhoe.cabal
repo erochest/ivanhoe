@@ -80,6 +80,8 @@ library
                  , heroku
                  , unordered-containers
                  , time
+                 , old-locale
+                 , friendly-time
 
 executable         ivanhoe
     if flag(library-only)

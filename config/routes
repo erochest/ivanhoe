@@ -7,3 +7,5 @@
 
 / HomeR GET
 /stories StoriesR GET
+/stories/new NewStoryR GET POST
+/stories/#!StoryId StoryR GET
