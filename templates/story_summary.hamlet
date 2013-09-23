@@ -1,5 +1,6 @@
 <dl>
   <dt>
-    <strong>Title
+    <strong>
+      <a href=@{StoryR storyId}>Title
   <dd>
     #{storyTitle story}

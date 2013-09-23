@@ -6,6 +6,6 @@ $if null stories
   <p>No stories
 $else
   <ul>
-    $forall Entity _ story <- stories
+    $forall storyEntity <- stories
       <li>
-        ^{storySummary story}
+        ^{storySummary storyEntity}

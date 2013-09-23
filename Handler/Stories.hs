@@ -19,8 +19,8 @@ getStoriesR = do
     defaultLayout $
         $(widgetFile "stories")
 
-storySummary :: Story -> WidgetT App IO ()
-storySummary story = $(whamletFile "templates/story_summary.hamlet")
+storySummary :: Entity Story -> WidgetT App IO ()
+storySummary (Entity storyId story) = $(whamletFile "templates/story_summary.hamlet")
 
 getNewStoryR :: Handler Html
 getNewStoryR = do
